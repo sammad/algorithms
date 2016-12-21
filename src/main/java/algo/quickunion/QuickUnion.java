@@ -1,19 +1,22 @@
-package algo.quickfind;
+package algo.quickunion;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class QuickFind {
+import algo.quickfind.Commands;
+
+public class QuickUnion {
+
 
 	private Integer arraySize;
-	private Integer[] numberArr;
-	public QuickFind(int numberOfInteger) {
+	private Integer[] rootArr;
+	public QuickUnion(int numberOfInteger) {
 		this.arraySize=numberOfInteger;
-		numberArr = new Integer[arraySize];
+		rootArr = new Integer[arraySize];
 	}
 	public void buildArray(Scanner scanner){
 		for(int idx=0;idx<arraySize;idx++){
-			numberArr[idx]=idx;
+			rootArr[idx]=idx;
 		}
 	}
 	
@@ -69,30 +72,39 @@ public class QuickFind {
 		}
 	}
 	private boolean isConnected(Integer num1, Integer num2) {
-		return numberArr[num1]==numberArr[num2];
+		return getRoot(num1)==getRoot(num2);
 	}
 	
 	private void union(String command) throws Exception {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
-		Integer num1 = Integer.valueOf(unionNum[0]);
-		Integer num2 = Integer.valueOf(unionNum[1]);
-		if(num1>arraySize ||num2>arraySize){
+		Integer child = Integer.valueOf(unionNum[0]);
+		Integer parent = Integer.valueOf(unionNum[1]);
+		if(child>arraySize ||parent>arraySize){
 			throw new Exception("Numbers are not in range");
 		}
-		
-		for(int idx=0;idx<numberArr.length;idx++){
-			if(isConnected(numberArr[idx], numberArr[num2])){
-				numberArr[idx]=numberArr[num1];
-			}
+		 
+		if(!isConnected(child, parent)){
+			setRoot(rootArr[child],getRoot(rootArr[parent]));
 		}
-		if(!isConnected(num1, num2)){
-			numberArr[num2]=numberArr[num1];
+	}
+	
+	private void setRoot(Integer child, Integer root) {
+		rootArr[child]=root;
+	}
+	private Integer getRoot(Integer node) {
+		Integer root =null;
+		if(node.equals(rootArr[node])){
+			root =node;
+		}else{
+			root=getRoot(rootArr[node]);
 		}
+		return root;
 	}
 	private void showComponents() {
-		Arrays.asList(numberArr).forEach(component->System.out.print(component+"\t"));	
+		Arrays.asList(rootArr).forEach(component->System.out.print(component+"\t"));	
 	}
+
 
 }
