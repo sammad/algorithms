@@ -5,18 +5,22 @@ import java.util.Scanner;
 
 import algo.quickfind.Commands;
 
-public class QuickUnion {
+public class QuickUnionWeight {
 
 
 	private Integer arraySize;
 	private Integer[] rootArr;
-	public QuickUnion(int numberOfInteger) {
+	private Integer[] weight;
+	public QuickUnionWeight(int numberOfInteger) {
 		this.arraySize=numberOfInteger;
 		rootArr = new Integer[arraySize];
+		weight = new Integer[arraySize];
+		
 	}
 	public void buildArray(Scanner scanner){
 		for(int idx=0;idx<arraySize;idx++){
 			rootArr[idx]=idx;
+			weight[idx]=1;
 		}
 	}
 	
@@ -72,37 +76,50 @@ public class QuickUnion {
 		}
 	}
 	private boolean isConnected(Integer num1, Integer num2) {
-		return getRoot(num1)==getRoot(num2);
+		return root(num1)==root(num2);
 	}
 	
 	private void union(String command) throws Exception {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
-		Integer child = Integer.valueOf(unionNum[0]);
-		Integer parent = Integer.valueOf(unionNum[1]);
-		if(child>arraySize ||parent>arraySize){
+		Integer node1 = Integer.valueOf(unionNum[0]);
+		Integer node2 = Integer.valueOf(unionNum[1]);
+		if(node1>arraySize ||node2>arraySize){
 			throw new Exception("Numbers are not in range");
 		}
-		 
-		if(!isConnected(child, parent)){
-			rootArr[child] = getRoot(parent);
+
+		if(!isConnected(node1, node2)){
+			if(weight[root(node1)]>weight[root(node2)]){
+				rootArr[node1] = root(node2);
+				weight[rootArr[node1]]+=1;
+			}else{
+				rootArr[node2] = root(node1);
+				weight[rootArr[node1]]+=1;
+			}
 		}
-		
+
 		showComponents();
 	}
 	
-	private Integer getRoot(Integer node) {
-		Integer root;
+	private Integer root(Integer node) {
+		Integer root =null;
 		if(node.equals(rootArr[node])){
 			root =node;
 		}else{
-			root=getRoot(rootArr[node]);
+			root=root(rootArr[node]);
 		}
 		return root;
 	}
+	
+	
+	
 	private void showComponents() {
-		Arrays.asList(rootArr).forEach(component->System.out.print(component+"\t"));	
+		System.out.print("Nodes:\t");
+		Arrays.asList(rootArr).forEach(component->System.out.print(component+"\t"));
+		System.out.println();
+		System.out.print("Weights:");
+		Arrays.asList(weight).forEach(component->System.out.print(component+"\t"));	
 	}
 
 
