@@ -88,6 +88,8 @@ public class QuickUnion {
 		if(!isConnected(child, parent)){
 			setRoot(rootArr[child],getRoot(rootArr[parent]));
 		}
+		
+		showComponents();
 	}
 	
 	private void setRoot(Integer child, Integer root) {
