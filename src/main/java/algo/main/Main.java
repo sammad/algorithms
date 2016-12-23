@@ -13,9 +13,11 @@ public class Main {
 //			QuickFind quickFind = new QuickFind(numberOfInteger);
 //			QuickUnion quickUnion = new QuickUnion(numberOfInteger);
 			QuickUnionWeight quickUnion = new QuickUnionWeight(numberOfInteger);
-			quickUnion.buildArray(scanner);
+			quickUnion.buildArray();
 			try {
-				quickUnion.executeUserCommands(scanner);
+				System.out.println("Command=");
+				String command = scanner.next();
+				quickUnion.executeUserCommands(command);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

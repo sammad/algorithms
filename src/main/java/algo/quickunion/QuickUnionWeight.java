@@ -17,19 +17,17 @@ public class QuickUnionWeight {
 		weight = new Integer[arraySize];
 		
 	}
-	public void buildArray(Scanner scanner){
+	public void buildArray(){
 		for(int idx=0;idx<arraySize;idx++){
 			rootArr[idx]=idx;
 			weight[idx]=1;
 		}
 	}
 	
-	public void executeUserCommands(Scanner scanner) throws Exception {
-		String command;
+	public void executeUserCommands(String command) throws Exception {
+		long timeStart=System.currentTimeMillis();
+		Object result =null;
 		while(true){
-			System.out.println("Command=");
-			long timeStart=System.currentTimeMillis();
-			command = scanner.next();
 			String[] commandArr=command.split("\\(");
 			switch(Commands.valueOf(commandArr[0].toUpperCase())){
 				
@@ -62,24 +60,26 @@ public class QuickUnionWeight {
 		System.out.println(String.valueOf(idx++)+". show - Shows the integer array");
 		
 	}
-	private void connected(String command) {
+	public boolean connected(String command) {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
 		Integer num1 = Integer.valueOf(unionNum[0]);
 		Integer num2 = Integer.valueOf(unionNum[1]);
-		
-		if(isConnected(num1, num2)){
+		boolean result =isConnected(num1, num2);
+		if(result){
 			System.out.println("Components are connected");
 		}else{
 			System.out.println("Components are not connected");
 		}
+		
+		return result;
 	}
 	private boolean isConnected(Integer num1, Integer num2) {
 		return root(num1)==root(num2);
 	}
 	
-	private void union(String command) throws Exception {
+	public void union(String command) throws Exception {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
@@ -90,13 +90,16 @@ public class QuickUnionWeight {
 		}
 
 		if(!isConnected(node1, node2)){
-			if(weight[root(node1)]>weight[root(node2)]){
-				rootArr[node1] = root(node2);
-				weight[rootArr[node1]]+=1;
+			Integer rootNode1=root(node1);
+			Integer rootNode2=root(node2);
+			if(weight[rootNode1]>weight[rootNode2]){
+				rootArr[rootNode2] = rootNode1;
+				weight[rootNode1]+=1;
 			}else{
-				rootArr[node2] = root(node1);
-				weight[rootArr[node1]]+=1;
+				rootArr[rootNode1] = rootNode2;
+				weight[rootNode2]+=1;
 			}
+			
 		}
 
 		showComponents();
