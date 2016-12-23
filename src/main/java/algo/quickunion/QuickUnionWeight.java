@@ -1,7 +1,6 @@
 package algo.quickunion;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 import algo.quickfind.Commands;
 
@@ -26,7 +25,6 @@ public class QuickUnionWeight {
 	
 	public void executeUserCommands(String command) throws Exception {
 		long timeStart=System.currentTimeMillis();
-		Object result =null;
 		while(true){
 			String[] commandArr=command.split("\\(");
 			switch(Commands.valueOf(commandArr[0].toUpperCase())){

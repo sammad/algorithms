@@ -2,7 +2,6 @@ package algo.main;
 
 import java.util.Scanner;
 
-import algo.quickunion.QuickUnion;
 import algo.quickunion.QuickUnionWeight;
 
 public class Main {
