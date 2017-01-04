@@ -1,4 +1,4 @@
-package algo.quickunion;
+package algo.quickunionweight;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ public class QuickUnionWeight {
 	
 	public void executeUserCommands(String command) throws Exception {
 		long timeStart=System.currentTimeMillis();
-		while(true){
+		
 			String[] commandArr=command.split("\\(");
 			switch(Commands.valueOf(commandArr[0].toUpperCase())){
 				
@@ -42,12 +42,10 @@ public class QuickUnionWeight {
 			break;
 			case EXIT:System.exit(0);
 			
-			default:continue;
-			}
-			
-			long timeEnd=System.currentTimeMillis();
-			System.out.println("Command finished in (millisec):"+Long.valueOf(timeEnd-timeStart));
+			default:break;
 		}
+		long timeEnd=System.currentTimeMillis();
+		System.out.println("Command finished in (millisec):"+Long.valueOf(timeEnd-timeStart));
 		
 	}
 	

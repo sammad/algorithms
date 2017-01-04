@@ -22,7 +22,6 @@ public class QuickUnion {
 	
 	public void executeUserCommands(Scanner scanner) throws Exception {
 		String command;
-		while(true){
 			System.out.println("Command=");
 			long timeStart=System.currentTimeMillis();
 			command = scanner.next();
@@ -42,12 +41,11 @@ public class QuickUnion {
 			break;
 			case EXIT:System.exit(0);
 			
-			default:continue;
+			default:break;
 			}
 			
 			long timeEnd=System.currentTimeMillis();
 			System.out.println("Command finished in (millisec):"+Long.valueOf(timeEnd-timeStart));
-		}
 		
 	}
 	
