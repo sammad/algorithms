@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import algo.quickunion.QuickUnionWeight;
+import algo.quickunionweight.QuickUnionWeight;
 
 public class QuickUnionWeightTest {
 
