@@ -8,8 +8,11 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 	private Node<T> firstNode;
 	private Node<T> lastNode;
 	
+	
 	public LinkedListImpl(){
-		firstNode = new Node<T>(null,null);
+		lastNode = new Node<>(null,null);
+		firstNode = new Node<>(null,lastNode);
+		
 	}
 	@Override
 	public void addElementAtBeginning(T element) {
@@ -23,7 +26,9 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void addElementAtLast(T element) {
-		lastNode =new Node<>(element,null);
+		lastNode.setElement(element);
+		lastNode.setNext(new Node<>(null,null));
+		lastNode=lastNode.getNext();
 	}
 
 	@Override
@@ -33,8 +38,8 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public boolean isEmpty() {
-		return (firstNode.getElement()==null 
-				&& firstNode.getNext()==lastNode);
+		return firstNode.getElement()==null 
+				&& firstNode.getNext()==lastNode;
 	}
 
 	private class Node<T>{
@@ -64,7 +69,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 		}
 		@Override
 		public String toString() {
-			return "Node [element=" + element + ", next=" + next + "]";
+			return "Node [element=" + element + ", next=" + next +", hashCode="+hashCode() +"]";
 		}
 		
 		
@@ -73,25 +78,49 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public List<T> printList() {
 		List<T> elementList = new ArrayList<>();
-		Node<T> node = firstNode.next;
-		elementList.add(firstNode.getElement());
-		while(node.next!=null){
-			elementList.add(node.getElement());
-			node=node.next;
+		if(!isEmpty()){
+			Node<T> node = firstNode.next;
+			elementList.add(firstNode.getElement());
+			while(node!=null && node.next!=null){
+				elementList.add(node.getElement());
+				node=node.next;
+			}
 		}
 		return elementList;
 	}
 	@Override
 	public T deleteFirstElement() {
-		T element = firstNode.getElement();
-		firstNode =firstNode.next;
+		T element = null;
+		if(!isEmpty()){
+			element=firstNode.getElement();
+			firstNode =firstNode.next;
+		}
 		return element;
 	}
 	
 	@Override
 	public T deleteLastElement() {
-		T element = lastNode.getElement();
-		lastNode=null;
+		T element=null;
+		Node<T> currentNode = firstNode;
+		if(!isEmpty()){
+			Node<T> toBeLastElement=null;
+			while(currentNode.getNext().getElement()!=null){
+				toBeLastElement=currentNode;
+				currentNode=currentNode.getNext();
+			}
+			element=currentNode.getElement();
+			if(toBeLastElement!=null){
+				toBeLastElement.setNext(currentNode.getNext());
+			}else{
+				currentNode.setElement(null); 
+			}
+		}
+		
 		return element;
+	}
+	@Override
+	public void clear() {
+		lastNode = new Node<>(null,null);
+		firstNode = new Node<>(null,lastNode);
 	}
 }

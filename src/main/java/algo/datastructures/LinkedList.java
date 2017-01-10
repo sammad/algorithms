@@ -11,4 +11,5 @@ public interface LinkedList<T> {
 	public List<T> printList();
 	public T deleteFirstElement();
 	public T deleteLastElement();
+	public void clear();
 }
