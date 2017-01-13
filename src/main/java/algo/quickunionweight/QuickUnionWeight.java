@@ -41,13 +41,13 @@ public class QuickUnionWeight {
 			case HELP:showHelp(command);
 			break;
 			case EXIT:System.exit(0);
-			
 			default:break;
 		}
 		long timeEnd=System.currentTimeMillis();
 		System.out.println("Command finished in (millisec):"+Long.valueOf(timeEnd-timeStart));
 		
-	}
+    }
+
 	
 	private void showHelp(String command) {
 		int idx=1;

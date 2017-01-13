@@ -11,7 +11,7 @@ public class QuickFind {
 		this.arraySize=numberOfInteger;
 		numberArr = new Integer[arraySize];
 	}
-	public void buildArray(Scanner scanner){
+	public void buildArray(){
 		for(int idx=0;idx<arraySize;idx++){
 			numberArr[idx]=idx;
 		}
@@ -53,7 +53,7 @@ public class QuickFind {
 		System.out.println(String.valueOf(idx++)+". show - Shows the integer array");
 		
 	}
-	private void connected(String command) {
+	public void connected(String command) {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
@@ -66,11 +66,11 @@ public class QuickFind {
 			System.out.println("Components are not connected");
 		}
 	}
-	private boolean isConnected(Integer num1, Integer num2) {
+	public boolean isConnected(Integer num1, Integer num2) {
 		return numberArr[num1]==numberArr[num2];
 	}
 	
-	private void union(String command) throws Exception {
+	public void union(String command) throws Exception {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
@@ -89,7 +89,7 @@ public class QuickFind {
 			numberArr[num2]=numberArr[num1];
 		}
 	}
-	private void showComponents() {
+	public void showComponents() {
 		Arrays.asList(numberArr).forEach(component->System.out.print(component+"\t"));	
 	}
 

@@ -14,7 +14,7 @@ public class QuickUnion {
 		this.arraySize=numberOfInteger;
 		rootArr = new Integer[arraySize];
 	}
-	public void buildArray(Scanner scanner){
+	public void buildArray(){
 		for(int idx=0;idx<arraySize;idx++){
 			rootArr[idx]=idx;
 		}
@@ -49,14 +49,14 @@ public class QuickUnion {
 		
 	}
 	
-	private void showHelp(String command) {
+	public void showHelp(String command) {
 		int idx=1;
 		System.out.println(String.valueOf(idx++)+". union(index1,index2) - Connects component at index1 to component at index2 and all its respected connected components");
 		System.out.println(String.valueOf(idx++)+". connected(index1,index2) - Tells whether components are connected or not.");
 		System.out.println(String.valueOf(idx++)+". show - Shows the integer array");
 		
 	}
-	private void connected(String command) {
+	public void connected(String command) {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
@@ -69,11 +69,11 @@ public class QuickUnion {
 			System.out.println("Components are not connected");
 		}
 	}
-	private boolean isConnected(Integer num1, Integer num2) {
+	public boolean isConnected(Integer num1, Integer num2) {
 		return getRoot(num1)==getRoot(num2);
 	}
 	
-	private void union(String command) throws Exception {
+	public void union(String command) throws Exception {
 		Integer openingParenthesis = command.indexOf('(');
 		Integer closingParenthesis = command.indexOf(')');
 		String[] unionNum = command.substring(openingParenthesis+1, closingParenthesis).split(",");
@@ -86,11 +86,9 @@ public class QuickUnion {
 		if(!isConnected(child, parent)){
 			rootArr[child] = getRoot(parent);
 		}
-		
-		showComponents();
 	}
 	
-	private Integer getRoot(Integer node) {
+	public Integer getRoot(Integer node) {
 		Integer root;
 		if(node.equals(rootArr[node])){
 			root =node;
@@ -99,7 +97,7 @@ public class QuickUnion {
 		}
 		return root;
 	}
-	private void showComponents() {
+	public void showComponents() {
 		Arrays.asList(rootArr).forEach(component->System.out.print(component+"\t"));	
 	}
 
