@@ -9,17 +9,22 @@ public class Main {
 		try(Scanner scanner = new Scanner(System.in)){
 			System.out.println("Please enter number of elements:");
 			int numberOfInteger = scanner.nextInt();
-//			QuickFind quickFind = new QuickFind(numberOfInteger);
-//			QuickUnion quickUnion = new QuickUnion(numberOfInteger);
+			//			QuickFind quickFind = new QuickFind(numberOfInteger);
+			//			QuickUnion quickUnion = new QuickUnion(numberOfInteger);
 			QuickUnionWeight quickUnion = new QuickUnionWeight(numberOfInteger);
 			quickUnion.buildArray();
+			
 			try {
-				System.out.println("Command=");
-				String command = scanner.next();
-				quickUnion.executeUserCommands(command);
+				while(true){
+					System.out.println("Command=");
+					String command = scanner.next();
+					quickUnion.executeUserCommands(command);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 		}
+
 	}
 }
