@@ -38,8 +38,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public boolean isEmpty() {
-		return firstNode.getElement()==null 
-				&& firstNode.getNext()==lastNode;
+		return firstNode.getElement()==null;
 	}
 
 	private class Node<T>{
