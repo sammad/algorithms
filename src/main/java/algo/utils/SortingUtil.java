@@ -24,5 +24,15 @@ public class SortingUtil {
 			}
 		}
 		return result;
+	}
+
+	public static <T extends Comparable<? super T>> boolean isSorted(List<T> comparableItemList, int startIdx, int endIdx) {
+		boolean result=true;
+		for(int idx=startIdx;idx<endIdx-1;idx++){
+			if(!SortingUtil.isLess(comparableItemList, idx, idx+1)){
+				result=false;
+			}
+		}
+		return result;
 	} 
 }
