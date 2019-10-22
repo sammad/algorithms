@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Graph {
 
@@ -35,5 +36,9 @@ public class Graph {
 	
 	public List<Integer> getEdges(Integer vertex){
 		return adjacencyList.get(vertex);
+	}
+	
+	public Set<Integer> getVertices(){
+		return adjacencyList.keySet();
 	}
 }
