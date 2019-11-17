@@ -5,85 +5,64 @@ import java.util.List;
 
 public class LinkedListImpl<T> implements LinkedList<T> {
 
-	private Node<T> firstNode;
-	private Node<T> lastNode;
-	
+	private ListNode<T> head;
 	
 	public LinkedListImpl(){
-		lastNode = new Node<>(null,null);
-		firstNode = new Node<>(null,lastNode);
+		head = new ListNode<>(null,null);
 		
 	}
 	@Override
 	public void addElementAtBeginning(T element) {
 		if(isEmpty()){
-			firstNode.setElement(element);
+			head.setElement(element);
 		}else{
-			Node<T> newNode = new Node<>(element, firstNode);
-			firstNode =newNode;
+			ListNode<T> newNode = new ListNode<>(element, head);
+			head =newNode;
 		}
 	}
 
 	@Override
 	public void addElementAtLast(T element) {
-		lastNode.setElement(element);
-		lastNode.setNext(new Node<>(null,null));
-		lastNode=lastNode.getNext();
+		ListNode<T> newTail = new ListNode<T>(element, null);
+		ListNode<T> currentNode = head;
+		while(currentNode.getNext()!=null){
+			currentNode=currentNode.getNext();
+		}
+		currentNode.setNext(newTail);
 	}
 
 	@Override
-	public T searchElement(T value) {
-		return null;
+	public ListNode<T> searchElement(T value) {
+		ListNode<T> currentNode =null;
+		if(head.getElement().equals(value)){
+			return head;
+		}else{
+			currentNode = head.getNext();
+
+			while(currentNode.getNext()!=null
+					&& !currentNode.getElement().equals(value)){
+				currentNode=currentNode.getNext();
+			}
+		}
+		return currentNode;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return firstNode.getElement()==null;
+		return head.getElement()==null;
 	}
 
-	private class Node<T>{
-		private T element;
-		private Node<T> next;
-		
-		@Override
-		public boolean equals(Object obj) {
-			return this.element.equals(((Node)obj).element);
-		}
-		public Node(T element, Node<T> next) {
-			super();
-			this.element = element;
-			this.next = next;
-		}
-		public T getElement() {
-			return element;
-		}
-		public void setElement(T element) {
-			this.element = element;
-		}
-		public Node<T> getNext() {
-			return next;
-		}
-		public void setNext(Node<T> next) {
-			this.next = next;
-		}
-		@Override
-		public String toString() {
-			return "Node [element=" + element + ", next=" + next +", hashCode="+hashCode() +"]";
-		}
-		
-		
-	}
-
+	
 	@Override
 	public List<T> printList() {
 		List<T> elementList = new ArrayList<>();
 		if(!isEmpty()){
-			Node<T> node = firstNode.next;
-			elementList.add(firstNode.getElement());
-			while(node!=null && node.next!=null){
-				elementList.add(node.getElement());
-				node=node.next;
+			ListNode<T> currentNode = head;
+			while(currentNode.getNext()!=null){
+				elementList.add(currentNode.getElement());
+				currentNode =currentNode.getNext();
 			}
+			elementList.add(currentNode.getElement());
 		}
 		return elementList;
 	}
@@ -91,8 +70,8 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 	public T deleteFirstElement() {
 		T element = null;
 		if(!isEmpty()){
-			element=firstNode.getElement();
-			firstNode =firstNode.next;
+			element=head.getElement();
+			head =head.getNext();
 		}
 		return element;
 	}
@@ -100,18 +79,15 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public T deleteLastElement() {
 		T element=null;
-		Node<T> currentNode = firstNode;
+		ListNode<T> currentNode = head;
 		if(!isEmpty()){
-			Node<T> toBeLastElement=null;
-			while(currentNode.getNext().getElement()!=null){
+			ListNode<T> toBeLastElement=null;
+			while(currentNode.getNext()!=null){
 				toBeLastElement=currentNode;
 				currentNode=currentNode.getNext();
 			}
-			element=currentNode.getElement();
 			if(toBeLastElement!=null){
-				toBeLastElement.setNext(currentNode.getNext());
-			}else{
-				currentNode.setElement(null); 
+				toBeLastElement.setNext(null);
 			}
 		}
 		
@@ -119,7 +95,34 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 	}
 	@Override
 	public void clear() {
-		lastNode = new Node<>(null,null);
-		firstNode = new Node<>(null,lastNode);
+		head = new ListNode<>(null,null);
+	}
+	@Override
+	public boolean removeMatched(ListNode<T> queryNode) {
+		ListNode<T> currentNode = head;
+		boolean result=false;
+		while(currentNode.getElement()!=null){
+			if(currentNode.getNext().equals(queryNode)){
+				currentNode.setNext(currentNode.getNext().getNext());
+				result=true;
+				break;
+			}
+			currentNode=currentNode.getNext();
+		}
+		return result;
+	}
+	@Override
+	public Integer getListCount() {
+		ListNode<T> currentNode=head;
+		int count =0;
+		while(currentNode.getElement()!=null){
+			count+=1;
+		}
+		return count;
+	}
+	@Override
+	public boolean removeAtPosition(Integer position) {
+		
+		return false;
 	}
 }
