@@ -4,26 +4,31 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Test;
 
+import com.ms.algo.datastructures.linkedlist.DoublyLinkedList;
 import com.ms.algo.datastructures.linkedlist.LinkedList;
-import com.ms.algo.datastructures.linkedlist.SingleLinkedList;
 import com.ms.algo.datastructures.linkedlist.ListNode;
 
 
-public class LinkedListTest {
-	private LinkedList<String> list = new SingleLinkedList<>();
+public class DoublyLinkedListTest {
+	@Test
+	public void testAddElementAtBeginning() {
+		LinkedList<String> list = new DoublyLinkedList<>();
+		list.addElementAtBeginning("A");
+		list.addElementAtBeginning("B");
+		assertTrue(list.toString().equals("null-->B-->A-->null"));
+	}
 	@Test
 	public void testEmptyListPrint() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		List<String> strElementList=list.printList();
 		assertTrue(strElementList.isEmpty());
 	}
 	
 	@Test
 	public void testEmptyListDeleteFirst() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		list.deleteFirstElement();
 		List<String> strElementList=list.printList();
 		assertTrue(strElementList.isEmpty());
@@ -31,7 +36,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testEmptyListDeleteLast() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		list.deleteLastElement();
 		List<String> strElementList=list.printList();
 		assertTrue(strElementList.isEmpty());
@@ -39,7 +44,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testSingleItemListDeleteLast() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		list.addElementAtBeginning("A");
 		String item=list.deleteLastElement();
 		assertTrue(list.isEmpty());
@@ -48,7 +53,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testMultipleItemListDeleteLast() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		list.addElementAtBeginning("A");
 		list.addElementAtBeginning("B");
 		list.addElementAtBeginning("C");
@@ -58,7 +63,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testMatchItemListDelete() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		list.addElementAtBeginning("A");
 		list.addElementAtBeginning("B");
 		list.addElementAtBeginning("C");
@@ -68,21 +73,17 @@ public class LinkedListTest {
 	
 	@Test
 	public void testGetPositionInEmptyList() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		Integer position=list.getPosition("A");
 		assertTrue(Integer.valueOf(-1).equals(position));
 	}
 	
 	@Test
 	public void testGetPositionInList() {
-		LinkedList<String> list = new SingleLinkedList<>();
+		LinkedList<String> list = new DoublyLinkedList<>();
 		list.addElementAtBeginning("A");
 		list.addElementAtBeginning("B");
 		Integer position=list.getPosition("A");
 		assertTrue(Integer.valueOf(1).equals(position));
-	}
-	@After
-	public void afterTest(){
-		list.clear();
 	}
 }

@@ -4,7 +4,7 @@ public class ListMain {
 
 	public static void main(String[] args) {
 
-		LinkedList<String> linkedList = new SingleLinkedListImpl<>();
+		LinkedList<String> linkedList = new SingleLinkedList<>();
 		linkedList.addElementAtBeginning("A");
 		linkedList.addElementAtBeginning("B");
 		linkedList.addElementAtBeginning("C");

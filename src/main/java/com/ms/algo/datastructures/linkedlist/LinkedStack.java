@@ -7,7 +7,7 @@ public class LinkedStack<T> implements Stack<T> {
 	private LinkedList<T> list;
 	
 	public LinkedStack(){
-		list = new SingleLinkedListImpl<>();
+		list = new SingleLinkedList<>();
 	}
 	
 	@Override

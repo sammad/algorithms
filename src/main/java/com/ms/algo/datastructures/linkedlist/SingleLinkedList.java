@@ -3,11 +3,11 @@ package com.ms.algo.datastructures.linkedlist;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SingleLinkedListImpl<T> implements LinkedList<T> {
+public class SingleLinkedList<T> implements LinkedList<T> {
 
 	private ListNode<T> head;
 	
-	public SingleLinkedListImpl(){
+	public SingleLinkedList(){
 		head = new ListNode<>(null,null);
 		
 	}
@@ -60,6 +60,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		StringBuffer result=new StringBuffer();
 		while(currentNode!=null && currentNode.getNext()!=null) {
 			result.append(currentNode.getElement()).append("-->");
+			currentNode = currentNode.getNext();
 		}
 		result.append("null");
 		return "LinkedListImpl [head=" + result.toString() + "]";
@@ -142,5 +143,19 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	public boolean removeAtPosition(Integer position) {
 		
 		return false;
+	}
+	@Override
+	public Integer getPosition(T data) {
+		ListNode<T> currentNode = head;
+		Integer count=-1;
+		while (!isEmpty() && currentNode!=null){
+			count+=1;
+			if(currentNode.getElement().equals(data)){
+				break;
+			}
+			currentNode = currentNode.getNext();
+		}
+		
+		return count;
 	}
 }

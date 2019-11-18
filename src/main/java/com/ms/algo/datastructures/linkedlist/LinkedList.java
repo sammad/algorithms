@@ -13,6 +13,7 @@ public interface LinkedList<T> {
 	public T deleteFirstElement();
 	public T deleteLastElement();
 	public Integer getListCount();
+	public Integer getPosition(T data);
 	public boolean removeAtPosition(Integer position);
 	public void clear();
 }
