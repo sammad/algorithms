@@ -49,9 +49,21 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public boolean isEmpty() {
-		return head.getElement()==null;
+		return head==null ||
+				(head!=null && head.getElement()==null);
 	}
 
+	
+	@Override
+	public String toString() {
+		ListNode<T> currentNode = head;
+		StringBuffer result=new StringBuffer();
+		while(currentNode!=null && currentNode.getNext()!=null) {
+			result.append(currentNode.getElement()).append("-->");
+		}
+		result.append("null");
+		return "LinkedListImpl [head=" + result.toString() + "]";
+	}
 	
 	@Override
 	public List<T> printList() {
@@ -78,21 +90,25 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 	
 	@Override
 	public T deleteLastElement() {
-		T element=null;
 		ListNode<T> currentNode = head;
 		if(!isEmpty()){
-			ListNode<T> toBeLastElement=null;
-			while(currentNode.getNext()!=null){
-				toBeLastElement=currentNode;
-				currentNode=currentNode.getNext();
-			}
-			if(toBeLastElement!=null){
-				toBeLastElement.setNext(null);
+			if(this.getListCount()>1) {
+				ListNode<T> toBeLastElement=null;
+				while(currentNode.getNext()!=null){
+					toBeLastElement=currentNode;
+					currentNode=currentNode.getNext();
+				}
+				if(toBeLastElement!=null){
+					toBeLastElement.setNext(null);
+				}
+			}else {
+				head=null;
 			}
 		}
-		
-		return element;
+
+		return currentNode.getElement();
 	}
+	
 	@Override
 	public void clear() {
 		head = new ListNode<>(null,null);
@@ -115,8 +131,10 @@ public class LinkedListImpl<T> implements LinkedList<T> {
 	public Integer getListCount() {
 		ListNode<T> currentNode=head;
 		int count =0;
-		while(currentNode.getElement()!=null){
+		while(currentNode!=null &&
+				currentNode.getElement()!=null){
 			count+=1;
+			currentNode=currentNode.getNext();
 		}
 		return count;
 	}

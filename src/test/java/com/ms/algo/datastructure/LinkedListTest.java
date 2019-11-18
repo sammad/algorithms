@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.ms.algo.datastructures.LinkedList;
 import com.ms.algo.datastructures.LinkedListImpl;
+import com.ms.algo.datastructures.ListNode;
 
 
 public class LinkedListTest {
@@ -41,8 +42,7 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedListImpl<>();
 		list.addElementAtBeginning("A");
 		String item=list.deleteLastElement();
-		List<String> strElementList=list.printList();
-		assertTrue(strElementList.isEmpty());
+		assertTrue(list.isEmpty());
 		assertTrue("A".equals(item));
 	}
 	
@@ -55,6 +55,17 @@ public class LinkedListTest {
 		String item=list.deleteLastElement();
 		assertTrue("A".equals(item));
 	}
+	
+	@Test
+	public void testMatchItemListDelete() {
+		LinkedList<String> list = new LinkedListImpl<>();
+		list.addElementAtBeginning("A");
+		list.addElementAtBeginning("B");
+		list.addElementAtBeginning("C");
+		boolean isDeleted=list.removeMatched(new ListNode<>("B"));
+		assertTrue(isDeleted==Boolean.TRUE);
+	}
+	
 	@After
 	public void afterTest(){
 		list.clear();
