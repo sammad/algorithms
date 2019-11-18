@@ -1,13 +1,13 @@
-package com.ms.algo.datastructures;
+package com.ms.algo.datastructures.linkedlist;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LinkedListImpl<T> implements LinkedList<T> {
+public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	private ListNode<T> head;
 	
-	public LinkedListImpl(){
+	public SingleLinkedListImpl(){
 		head = new ListNode<>(null,null);
 		
 	}

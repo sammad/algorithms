@@ -7,23 +7,23 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Test;
 
-import com.ms.algo.datastructures.LinkedList;
-import com.ms.algo.datastructures.LinkedListImpl;
-import com.ms.algo.datastructures.ListNode;
+import com.ms.algo.datastructures.linkedlist.LinkedList;
+import com.ms.algo.datastructures.linkedlist.SingleLinkedListImpl;
+import com.ms.algo.datastructures.linkedlist.ListNode;
 
 
 public class LinkedListTest {
-	private LinkedList<String> list = new LinkedListImpl<>();
+	private LinkedList<String> list = new SingleLinkedListImpl<>();
 	@Test
 	public void testEmptyListPrint() {
-		LinkedList<String> list = new LinkedListImpl<>();
+		LinkedList<String> list = new SingleLinkedListImpl<>();
 		List<String> strElementList=list.printList();
 		assertTrue(strElementList.isEmpty());
 	}
 	
 	@Test
 	public void testEmptyListDeleteFirst() {
-		LinkedList<String> list = new LinkedListImpl<>();
+		LinkedList<String> list = new SingleLinkedListImpl<>();
 		list.deleteFirstElement();
 		List<String> strElementList=list.printList();
 		assertTrue(strElementList.isEmpty());
@@ -31,7 +31,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testEmptyListDeleteLast() {
-		LinkedList<String> list = new LinkedListImpl<>();
+		LinkedList<String> list = new SingleLinkedListImpl<>();
 		list.deleteLastElement();
 		List<String> strElementList=list.printList();
 		assertTrue(strElementList.isEmpty());
@@ -39,7 +39,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testSingleItemListDeleteLast() {
-		LinkedList<String> list = new LinkedListImpl<>();
+		LinkedList<String> list = new SingleLinkedListImpl<>();
 		list.addElementAtBeginning("A");
 		String item=list.deleteLastElement();
 		assertTrue(list.isEmpty());
@@ -48,7 +48,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testMultipleItemListDeleteLast() {
-		LinkedList<String> list = new LinkedListImpl<>();
+		LinkedList<String> list = new SingleLinkedListImpl<>();
 		list.addElementAtBeginning("A");
 		list.addElementAtBeginning("B");
 		list.addElementAtBeginning("C");
@@ -58,7 +58,7 @@ public class LinkedListTest {
 	
 	@Test
 	public void testMatchItemListDelete() {
-		LinkedList<String> list = new LinkedListImpl<>();
+		LinkedList<String> list = new SingleLinkedListImpl<>();
 		list.addElementAtBeginning("A");
 		list.addElementAtBeginning("B");
 		list.addElementAtBeginning("C");

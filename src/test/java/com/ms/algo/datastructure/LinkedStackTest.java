@@ -4,8 +4,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.ms.algo.datastructures.LinkedStack;
-import com.ms.algo.datastructures.Stack;
+import com.ms.algo.datastructures.linkedlist.LinkedStack;
+import com.ms.algo.datastructures.linkedlist.Stack;
 
 public class LinkedStackTest {
 

@@ -1,4 +1,4 @@
-package com.ms.algo.datastructures;
+package com.ms.algo.datastructures.linkedlist;
 
 
 

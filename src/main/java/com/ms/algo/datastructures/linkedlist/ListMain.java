@@ -1,10 +1,10 @@
-package com.ms.algo.datastructures;
+package com.ms.algo.datastructures.linkedlist;
 
 public class ListMain {
 
 	public static void main(String[] args) {
 
-		LinkedList<String> linkedList = new LinkedListImpl<>();
+		LinkedList<String> linkedList = new SingleLinkedListImpl<>();
 		linkedList.addElementAtBeginning("A");
 		linkedList.addElementAtBeginning("B");
 		linkedList.addElementAtBeginning("C");
