@@ -16,4 +16,5 @@ public interface LinkedList<T> {
 	public Integer getPosition(T data);
 	public boolean removeAtPosition(Integer position);
 	public void clear();
+	public void reverse();
 }

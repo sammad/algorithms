@@ -2,25 +2,36 @@ package com.ms.algo.datastructures.linkedlist;
 
 import java.util.List;
 
-public class DoublyLinkedList<T> implements LinkedList<T> {
-
-	private DLLNode<T> head;
+public class CircularLinkedList<T> implements LinkedList<T> {
 	
+	private CLLNode<T> tail;
+
 	@Override
 	public void addElementAtBeginning(T value) {
-	if(head!=null){
-		DLLNode<T> newListNode = new DLLNode<T>(value,null,head);
-		head.setPrevious(newListNode);
-		head=newListNode;
-	}else{
-		head= new DLLNode<T>(value);
-	}	
-
+		if(tail!=null){
+			CLLNode<T> newNode = new CLLNode<T>(value,tail);
+			tail.setNext(newNode);
+		}else{
+			tail = new CLLNode<T>(value);
+			tail.setNext(tail);
+		}
 	}
 
 	@Override
 	public void addElementAtLast(T value) {
-		// TODO Auto-generated method stub
+		if(tail!=null){
+		CLLNode<T> currentNode = tail.getNext();
+		while(currentNode!=tail){
+			if(currentNode.getNext()==tail){
+				CLLNode<T> newNode = new CLLNode<T>(value, tail);
+				currentNode.setNext(newNode);
+				break;
+			}
+		}
+		}else{
+			tail = new CLLNode<T>(value);
+			tail.setNext(tail);
+		}
 
 	}
 
@@ -85,23 +96,21 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 	}
 
 	@Override
+	public void reverse() {
+		// TODO Auto-generated method stub
+
+	}
+	
+	@Override
 	public String toString() {
-		DLLNode<T> currentNode = head;
-		StringBuffer result=new StringBuffer("null-->");
-		while(currentNode!=null) {
+		StringBuffer result=new StringBuffer().append(tail.getElement()).append("-->");
+		CLLNode<T> currentNode = tail.getNext();
+		while(currentNode!=null && currentNode!=tail) {
 			result.append(currentNode.getElement()).append("-->");
 			currentNode = currentNode.getNext();
 		}
 		result.append("null");
 		return result.toString();
 	}
-
-	@Override
-	public void reverse() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 
 }

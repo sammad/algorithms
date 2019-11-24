@@ -58,7 +58,7 @@ public class SingleLinkedList<T> implements LinkedList<T> {
 	public String toString() {
 		ListNode<T> currentNode = head;
 		StringBuffer result=new StringBuffer();
-		while(currentNode!=null && currentNode.getNext()!=null) {
+		while(currentNode!=null && currentNode!=null) {
 			result.append(currentNode.getElement()).append("-->");
 			currentNode = currentNode.getNext();
 		}
@@ -157,5 +157,19 @@ public class SingleLinkedList<T> implements LinkedList<T> {
 		}
 		
 		return count;
+	}
+	@Override
+	public void reverse() {
+		ListNode<T> previous = null;
+		ListNode<T> current =head;
+		
+		while(current!=null){
+			ListNode<T> next = current.getNext();
+			current.setNext(previous);
+			previous=current;
+			current=next;
+		}
+		head=previous;
+		System.out.println(this);
 	}
 }

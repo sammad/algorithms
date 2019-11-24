@@ -9,7 +9,7 @@ public class ListNode<T>{
 		@Override
 		public boolean equals(Object obj) {
 			ListNode<T> objOperand2 = (ListNode<T>)obj;
-			return this.element.equals(objOperand2.element);
+			return this==objOperand2;
 		}
 		public ListNode(T element, ListNode<T> next) {
 			super();

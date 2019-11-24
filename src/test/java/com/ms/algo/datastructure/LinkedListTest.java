@@ -81,6 +81,17 @@ public class LinkedListTest {
 		Integer position=list.getPosition("A");
 		assertTrue(Integer.valueOf(1).equals(position));
 	}
+	
+	@Test
+	public void testSLLReverese() {
+		LinkedList<String> list = new SingleLinkedList<>();
+		list.addElementAtBeginning("D");
+		list.addElementAtBeginning("C");
+		list.addElementAtBeginning("B");
+		list.addElementAtBeginning("A");
+		list.reverse();
+		System.out.println(list);
+	}
 	@After
 	public void afterTest(){
 		list.clear();
