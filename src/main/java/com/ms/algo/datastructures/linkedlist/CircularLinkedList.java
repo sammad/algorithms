@@ -11,6 +11,7 @@ public class CircularLinkedList<T> implements LinkedList<T> {
 		if(tail!=null){
 			CLLNode<T> newNode = new CLLNode<T>(value,tail);
 			tail.setNext(newNode);
+			tail=newNode;
 		}else{
 			tail = new CLLNode<T>(value);
 			tail.setNext(tail);
@@ -20,12 +21,18 @@ public class CircularLinkedList<T> implements LinkedList<T> {
 	@Override
 	public void addElementAtLast(T value) {
 		if(tail!=null){
-		CLLNode<T> currentNode = tail.getNext();
-		while(currentNode!=tail){
-			if(currentNode.getNext()==tail){
-				CLLNode<T> newNode = new CLLNode<T>(value, tail);
-				currentNode.setNext(newNode);
-				break;
+		if(tail.getNext()==tail){
+			CLLNode<T> tempNode = new CLLNode<>(value);
+			tempNode.setNext(tail);
+			tail.setNext(tempNode);
+		}else{	
+			CLLNode<T> currentNode = tail.getNext();
+			while(currentNode!=tail){
+				if(currentNode.getNext()==tail){
+					CLLNode<T> newNode = new CLLNode<T>(value, tail);
+					currentNode.setNext(newNode);
+					break;
+				}
 			}
 		}
 		}else{
@@ -36,15 +43,21 @@ public class CircularLinkedList<T> implements LinkedList<T> {
 	}
 
 	@Override
-	public ListNode<T> searchElement(T value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean removeMatched(ListNode<T> node) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean searchElement(T value) {
+		boolean isValueExist=Boolean.FALSE;
+		if(value.equals(tail.getElement())){
+			isValueExist= Boolean.TRUE;
+		}else{
+			CLLNode<T> currentNode = tail.getNext();
+			while(currentNode!=tail){
+				if(value.equals(tail.getElement())){
+					isValueExist= Boolean.TRUE;
+					break;
+				}
+			}
+		}
+		
+		return isValueExist;
 	}
 
 	@Override
@@ -61,13 +74,14 @@ public class CircularLinkedList<T> implements LinkedList<T> {
 
 	@Override
 	public T deleteFirstElement() {
-		// TODO Auto-generated method stub
-		return null;
+		T result = tail.getElement();
+		tail=tail.getNext();
+		return result;
 	}
 
 	@Override
 	public T deleteLastElement() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -111,6 +125,12 @@ public class CircularLinkedList<T> implements LinkedList<T> {
 		}
 		result.append("null");
 		return result.toString();
+	}
+
+	@Override
+	public boolean removeMatched(T node) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

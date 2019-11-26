@@ -6,8 +6,8 @@ public interface LinkedList<T> {
 
 	public void addElementAtBeginning(T value);
 	public void addElementAtLast(T value);
-	public ListNode<T> searchElement(T value);
-	public boolean removeMatched(ListNode<T> node);
+	public boolean searchElement(T value);
+	public boolean removeMatched(T node);
 	public boolean isEmpty();
 	public List<T> printList();
 	public T deleteFirstElement();

@@ -21,7 +21,8 @@ public class CLLTest {
 		CircularLinkedList<String> cll = new CircularLinkedList<>();
 		cll.addElementAtLast("A");
 		cll.addElementAtLast("B");
-		assertTrue("A-->B-->null".equalsIgnoreCase(cll.toString()));
+		cll.addElementAtLast("C");
+		assertTrue("A-->B-->C-->null".equalsIgnoreCase(cll.toString()));
 	}
 
 	@Test
@@ -46,7 +47,13 @@ public class CLLTest {
 
 	@Test
 	public void testDeleteFirstElement() {
-		fail("Not yet implemented");
+		CircularLinkedList<String> cll = new CircularLinkedList<>();
+		cll.addElementAtLast("A");
+		cll.addElementAtLast("B");
+		cll.addElementAtLast("C");
+		assertTrue("A-->B-->C-->null".equalsIgnoreCase(cll.toString()));
+		cll.deleteFirstElement();
+		assertTrue("B-->C-->null".equalsIgnoreCase(cll.toString()));
 	}
 
 	@Test
