@@ -22,7 +22,7 @@ public class ListMain {
 		linkedList.deleteLastElement();
 		System.out.println(linkedList.printList());
 		System.out.println(linkedList.searchElement("F"));
-		linkedList.removeMatched(new ListNode<String>("B"));
+		linkedList.removeMatched("B");
 		System.out.println(linkedList.printList());
 	}
 }

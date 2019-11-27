@@ -32,10 +32,11 @@ public class SingleLinkedList<T> implements LinkedList<T> {
 	}
 
 	@Override
-	public ListNode<T> searchElement(T value) {
+	public boolean searchElement(T value) {
 		ListNode<T> currentNode =null;
+		boolean result = false;
 		if(head.getElement().equals(value)){
-			return head;
+			result= true;
 		}else{
 			currentNode = head.getNext();
 
@@ -44,7 +45,7 @@ public class SingleLinkedList<T> implements LinkedList<T> {
 				currentNode=currentNode.getNext();
 			}
 		}
-		return currentNode;
+		return result;
 	}
 
 	@Override
@@ -115,7 +116,7 @@ public class SingleLinkedList<T> implements LinkedList<T> {
 		head = new ListNode<>(null,null);
 	}
 	@Override
-	public boolean removeMatched(ListNode<T> queryNode) {
+	public boolean removeMatched(T queryNode) {
 		ListNode<T> currentNode = head;
 		boolean result=false;
 		while(currentNode.getElement()!=null){
@@ -172,4 +173,6 @@ public class SingleLinkedList<T> implements LinkedList<T> {
 		head=previous;
 		System.out.println(this);
 	}
+
+	
 }

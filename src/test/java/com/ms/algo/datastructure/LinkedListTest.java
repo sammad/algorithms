@@ -62,7 +62,7 @@ public class LinkedListTest {
 		list.addElementAtBeginning("A");
 		list.addElementAtBeginning("B");
 		list.addElementAtBeginning("C");
-		boolean isDeleted=list.removeMatched(new ListNode<>("B"));
+		boolean isDeleted=list.removeMatched("B");
 		assertTrue(isDeleted==Boolean.TRUE);
 	}
 	

@@ -25,18 +25,6 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 	}
 
 	@Override
-	public ListNode<T> searchElement(T value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean removeMatched(ListNode<T> node) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		return false;
@@ -100,6 +88,18 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 	public void reverse() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean searchElement(T value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeMatched(T node) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	
