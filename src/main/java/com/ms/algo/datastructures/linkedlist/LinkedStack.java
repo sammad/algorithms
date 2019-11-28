@@ -1,7 +1,5 @@
 package com.ms.algo.datastructures.linkedlist;
 
-import java.util.List;
-
 public class LinkedStack<T> implements Stack<T> {
 
 	private LinkedList<T> list;
@@ -23,11 +21,6 @@ public class LinkedStack<T> implements Stack<T> {
 	@Override
 	public boolean isEmpty() {
 		return list.isEmpty();
-	}
-
-	@Override
-	public List<T> showStackItems() {
-		return list.printList();
 	}
 
 	@Override
