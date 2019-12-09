@@ -20,55 +20,46 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
 	@Override
 	public void addElementAtLast(T value) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public List<T> printList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T deleteFirstElement() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public T deleteLastElement() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Integer getListCount() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Integer getPosition(T data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean removeAtPosition(Integer position) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -86,19 +77,16 @@ public class DoublyLinkedList<T> implements LinkedList<T> {
 
 	@Override
 	public void reverse() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public boolean searchElement(T value) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean removeMatched(T node) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
